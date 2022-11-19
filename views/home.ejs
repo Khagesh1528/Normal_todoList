@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+       <div class="container">
+                    <h1 class="text-center heading_page">To DO APP</h1>
+            <div class="input_task_container">
+                <form action="/create_Todo" method="POST">
+                    <div class="input_box">
+                        
+                        <input type="text" name="desc" placeholder="How do you need to do ?" id="desc_input">
+                    </div>
+                    <div class="cate_date">
+                       
+                        <select name="category" id="category">
+                            <option selected disabled>Choose a category</option>
+                            <option >Work</option>
+                            <option >Personal</option>
+                            <option >Cleaning</option>
+                            <option >Others</option>
+                        </select>
+                        <input type="date" class="due_date" name="dueDate" placeholder="dd-mm-yyyy">
+                    </div>
+                    <button type="submit" class="addbtn c_btn">Add Task</button>
+                </form>
+            </div>
+            <div class="display_delete_task">
+                  <ul>
+                    <form action="/deleteTodo" method="GET">
+                        <% for(let i of todolist){%>
+                            <div>
+                                <input type="checkbox" name="<%= i._id %>" class="deleteButton" >
+                            </div>
+                                <li>
+                                    <p><%= i.desc %></p>
+                                    <p class="cate-pos c_btn"><%= i.category %></p>
+                                    <p class="date-pos"><%= i.dueDate %></p>
+                                </li>
+                        <%}%>
+                        <button type="submit" class="btndelete c_btn">Delete Task</button>
+                    </form>
+                  </ul>
+            </div>
+       </div>
+       <script src="/js/home.js"></script>
+    </body>
+</html>
